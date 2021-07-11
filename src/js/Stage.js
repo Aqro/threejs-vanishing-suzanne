@@ -136,7 +136,7 @@ export default class Stage {
     --------------------------------------------------------- */
 
     onResize() {
-        //
+        this.renderStage()
     }
 
 
