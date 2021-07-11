@@ -1,0 +1,50 @@
+{
+  "scripts": {
+    "build": "webpack --mode=production --optimization-minimize --config webpack.config.js",
+    "watch": "webpack --mode=development --watch --progress --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/plugin-transform-runtime": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.26.12",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.4",
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "glsl-noise": "0.0.0",
+    "glsl-shader-loader": "^0.1.6",
+    "glslify": "^7.0.0",
+    "glslify-import": "^3.1.0",
+    "glslify-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^2.1.0",
+    "purgecss-webpack-plugin": "^4.0.3",
+    "sass": "^1.32.13",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.0",
+    "cannon-es": "^0.18.0",
+    "glsl-fast-gaussian-blur": "^1.0.2",
+    "gsap": "^3.6.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.130.1",
+    "three.meshline": "^1.3.0",
+    "tweakpane": "^3.0.2"
+  }
+}

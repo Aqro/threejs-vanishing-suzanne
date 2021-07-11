@@ -1,0 +1,45 @@
+
+/* NAV
+---------------------------------------------------------------------------------------------------- */
+
+$radius: 40rem;
+
+.nav {
+    position: relative;
+    z-index: 10;
+}
+
+.nav__list__el {
+    position: fixed;
+    top: calc(50% - 1rem);
+    left: calc(50% - 1rem);
+}
+
+
+.nav__list__link {
+    display: block;
+    overflow: hidden;
+    position: fixed;
+    top: calc(50% - 1rem);
+    left: calc(50% - 1rem);
+    z-index: 5;
+    width: 2rem;
+    height: 2rem;
+
+    text-indent: -99999rem;
+
+    background-color: #fff;
+    border-radius: 50%;
+
+
+    @for $i from 1 to 7 {
+        .nav__list__el:nth-child(#{$i}) & {
+            $a: ($pi * 2) / 6 * $i;
+
+            $x: $radius * cos($a);
+            $y: $radius * sin($a);
+            // background-color: #fff;
+            transform: translate3d($x, $y, 0);
+        }
+    }
+}

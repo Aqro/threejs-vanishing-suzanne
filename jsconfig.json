@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "allowSyntheticDefaultImports": false,
+        "baseUrl": "./",
+        "paths": {
+            "@comps/*": ["./src/js/components/*"],
+            "@scene/*": ["./src/js/scene/*"],
+            "@ctrl/*": ["./src/js/controllers/*"],
+            "@mat/*": ["./src/js/materials/*"],
+            "@params/*": ["./src/js/params/*"],
+            "@passes/*": ["./src/js/passes/*"],
+            "@utils/*": ["./src/js/utils/*"]
+        }
+    },
+    "include": ["src/**/*"]
+}

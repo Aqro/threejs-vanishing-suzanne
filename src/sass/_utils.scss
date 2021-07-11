@@ -1,0 +1,93 @@
+/* Media Queries
+--------------------------------------------------------- */
+
+// Minimum WIDTH
+@mixin minw($val) {
+    @media only screen and (min-width: $val) {
+        @content;
+    }
+}
+
+// Maximum WIDTH
+@mixin maxw($val) {
+    @media only screen and (max-width: #{$val - 1}) {
+        @content;
+    }
+}
+
+// Minimum HEIGHT
+@mixin minh($val) {
+    @media only screen and (min-height: $val) {
+        @content;
+    }
+}
+
+// Maximum HEIGHT
+@mixin maxh($val) {
+    @media only screen and (max-height: #{$val - 1}) {
+        @content;
+    }
+}
+
+// Minimum WIDTH & Maximum WIDTH
+@mixin minw-maxw($minw, $maxw) {
+    @media only screen and (min-width: $minw) and (max-width: #{$val - 1}) {
+        @content;
+    }
+}
+
+$bp-mobile: 767px;
+$bp-tablet: 961px;
+
+
+/* HOVER
+---------------------------------------------------------------------------------------------------- */
+/// Mixin for handling hover states
+/// 'mouse'      :    Handle mouse, touch pad
+/// 'touch'      :    Handle smartphones, touchscreens
+/// 'stylus'     :    Handle stylus-based screens
+/// 'controller' :    Handle Nintendo Wii controller, Microsoft Kinect
+
+$mq-input: (
+    'mouse'      : '(hover: hover) and (pointer: fine)',
+    'touch'      : '(hover: none) and (pointer: coarse)',
+    'stylus'     : '(hover: none) and (pointer: fine)',
+    'controller' : '(hover: hover) and (pointer: coarse)'
+);
+
+@mixin hover($preset: false, $device: 'mouse', $active: false, $handleIE: false) {
+    $device: if($device == null, 'mouse', $device);
+    $mediaquery  : map-get($mq-input, $device);
+
+    $activeState : if($active, '&:active, ', '');
+    $ieState     : if($handleIE, ', .ie &:hover, .ie &:focus', '');
+    $selectors   : $activeState + '&:hover, &:focus' + $ieState;
+
+    @media #{$mediaquery} {
+        @if $preset {
+            #{$selectors} {
+                @content;
+            }
+        }
+
+        @else {
+            @content;
+        }
+    }
+}
+
+
+/* MISC
+---------------------------------------------------------------------------------------------------- */
+
+.visually-hidden {
+    overflow: hidden !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px;
+    padding: 0;
+
+    border: 0;
+    clip: rect(0 0 0 0);
+}
