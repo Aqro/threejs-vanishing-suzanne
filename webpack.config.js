@@ -23,6 +23,7 @@ module.exports = {
             '@scene': path.resolve(__dirname, 'src/js/scene/'),
             '@ctrl': path.resolve(__dirname, 'src/js/controllers/'),
             '@mat': path.resolve(__dirname, 'src/js/materials/'),
+            '@gpu': path.resolve(__dirname, 'src/js/gpu-shaders/'),
             '@params': path.resolve(__dirname, 'src/js/params/'),
             '@passes': path.resolve(__dirname, 'src/js/passes/'),
             '@utils': path.resolve(__dirname, 'src/js/utils/'),

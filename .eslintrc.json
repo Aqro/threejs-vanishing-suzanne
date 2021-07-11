@@ -15,6 +15,7 @@
             ["@comps", "./src/js/components/"],
             ["@scene", "./src/js/scene/"],
             ["@ctrl", "./src/js/controllers/"],
+            ["@gpu", "./src/js/gpu-shaders/"],
             ["@mat", "./src/js/materials/"],
             ["@params", "./src/js/params/"],
             ["@passes", "./src/js/passes/"],

@@ -10,6 +10,7 @@
             "@mat/*": ["./src/js/materials/*"],
             "@params/*": ["./src/js/params/*"],
             "@passes/*": ["./src/js/passes/*"],
+            "@gpu/*": ["./src/js/gpu-shaders/*"],
             "@utils/*": ["./src/js/utils/*"]
         }
     },

@@ -15,7 +15,7 @@ import PostProcessing from '@scene/PostProcessing'
 
 // import Fbo from '@comps/Fbo'
 import Ray from '@comps/Ray'
-
+// import GPUComputationRenderer from '@scene/GPUComputationRenderer'
 
 /* Controllers
 --------------------------------------------------------- */
@@ -115,6 +115,8 @@ export default class Stage {
     initScene() {
         this.ray   = new Ray(this.camera)
         this.scene = new Scene()
+
+        // this.gpu = new GPUComputationRenderer(this.renderer)
     }
 
 
