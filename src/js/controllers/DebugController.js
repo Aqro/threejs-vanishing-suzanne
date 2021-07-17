@@ -54,6 +54,8 @@ class DebugController {
         this.controls.enableKeys = false
         this.controls.enableDamping = true
         // this.controls.enableZoom = false
+        this.controls.minDistance = APP.Browser.isSafariDesktop ? 4 : 2.5
+        this.controls.maxDistance = 9
         this.controls.update()
 
         if (!this.params.renderOnControl) return

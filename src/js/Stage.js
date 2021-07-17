@@ -1,3 +1,5 @@
+import { ev } from '@utils/index'
+import gsap from 'gsap'
 
 /* Scene Components
 --------------------------------------------------------- */
@@ -15,13 +17,15 @@ import PostProcessing from '@scene/PostProcessing'
 
 // import Fbo from '@comps/Fbo'
 import Ray from '@comps/Ray'
+import DebugComponent from '@comps/DebugComponent'
 // import GPUComputationRenderer from '@scene/GPUComputationRenderer'
+
+
 
 /* Controllers
 --------------------------------------------------------- */
 
-import DebugController from '@ctrl/DebugController'
-import PARAMS from './params'
+import PARAMS from './Params'
 
 
 
@@ -71,7 +75,8 @@ export default class Stage {
         this.initDebugController()
         this.initPostProcess()
 
-        this.renderStage(200)
+        // this.renderStage(500)
+        this.renderer.toggleRender(true)
 
         this.bindEvents()
     }
@@ -96,24 +101,14 @@ export default class Stage {
 
 
     initDebugController() {
-        this.DC = new DebugController(this, {
-            stats   : true,
-            gui     : true,
-            control : true,
-            renderOnControl: true,
-        })
-
-        this.DC.gui.addInput(PARAMS, 'test', {
-            min: 0,
-            max: 1,
-        })
+        this.DC = new DebugComponent(this)
     }
 
 
 
 
     initScene() {
-        this.ray   = new Ray(this.camera)
+        // this.ray   = new Ray(this.camera)
         this.scene = new Scene()
 
         // this.gpu = new GPUComputationRenderer(this.renderer)
@@ -146,15 +141,14 @@ export default class Stage {
         this.renderStage()
     }
 
-
     renderStage(delay = 100) {
-        this.renderer.toggleRender(true)
+        // this.renderer.toggleRender(true)
 
-        clearTimeout(this.renderTimer)
+        // clearTimeout(this.renderTimer)
 
-        this.renderTimer = setTimeout(() => {
-            this.renderer.toggleRender(false)
-        }, delay)
+        // this.renderTimer = setTimeout(() => {
+        //     this.renderer.toggleRender(false)
+        // }, delay)
     }
 
 
@@ -167,8 +161,11 @@ export default class Stage {
 
         this.update()
 
-        // R.render(this.scene, this.camera)
-        P.render()
+        if (PARAMS.useBloom) {
+            P.render()
+        } else {
+            R.render(this.scene, this.camera)
+        }
 
         this.DC.endStats()
     }

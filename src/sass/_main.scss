@@ -1,20 +1,23 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 
 /* MAIN
 --------------------------------------------------------- */
-html {
-    font-size: 62.5%;
-}
+
+/*! purgecss start ignore */
+
+
 
 body {
+    height: 100vh;
+    margin: 0;
+
+    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-size: 1.6rem;
     font-weight: 800;
-    height: 100vh;
-
-    margin: 0;
 }
+
 
 #stage {
     position: fixed;
@@ -26,3 +29,30 @@ body {
     // pointer-events: none;
 }
 
+.copyright {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+
+    color: rgba(#fff, .5);
+
+    a {
+        text-decoration: underline;
+
+        color: #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    @include maxw($bp-mobile) {
+        font-size: 1.4rem;
+    }
+}
+
+.tp-dfwv {
+    z-index: 10;
+}
+
+/*! purgecss end ignore */

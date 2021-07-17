@@ -1,14 +1,15 @@
-import { Vector2 } from 'three'
+import { Vector2, WebGLMultisampleRenderTarget, WebGLRenderTarget } from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass'
-// import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
-import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
+// import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass'
 
 
 
 // Passes
 import CustomShaderPass from '@passes/template-pass'
+import PARAMS from '../Params'
 
 
 
@@ -17,14 +18,22 @@ import CustomShaderPass from '@passes/template-pass'
 
 export default class PostProcessing extends EffectComposer {
 
-    constructor({ renderer, scene, camera }) {
-        super(renderer)
+    constructor({ renderer: R, scene, camera }) {
+        const RTClass = R.getPixelRatio() === 1
+            && R.capabilities.isWebGL2
+            ? WebGLMultisampleRenderTarget : WebGLRenderTarget
+
+        const RTComposer = new RTClass(1, 1)
+
+        super(R, RTComposer)
 
         this.scene    = scene
         this.camera   = camera
-        this.renderer = renderer
+        this.renderer = R
 
-        const renderPass = new RenderPass(scene, camera);
+        this.onResize()
+
+        const renderPass = new RenderPass(scene, camera)
         this.addPass(renderPass)
         this.addCustomPasses()
 
@@ -34,6 +43,7 @@ export default class PostProcessing extends EffectComposer {
 
     bindEvents() {
         document.addEventListener('layoutChange', () => this.onResize())
+        document.addEventListener('postUpdate', () => this.onPostNeedUpdate())
     }
 
 
@@ -48,12 +58,20 @@ export default class PostProcessing extends EffectComposer {
     }
 
 
+    onPostNeedUpdate() {
+        const { bloom } = PARAMS
+
+        this.bloomPass.strength  = bloom.strength
+        this.bloomPass.radius    = bloom.radius
+        this.bloomPass.threshold = bloom.threshold
+    }
 
     /* Actions
     --------------------------------------------------------- */
 
     addCustomPasses() {
         const { W, H, PR } = APP.Layout
+        const { bloom } = PARAMS
 
         this.custompass = new CustomShaderPass()
 
@@ -63,8 +81,15 @@ export default class PostProcessing extends EffectComposer {
         this.smaaPass = new SMAAPass(W * PR, H * PR)
         this.addPass(this.smaaPass)
 
-        // this.bloomPass = new UnrealBloomPass(new Vector2(W, H), 0.8, 0.1, 0.5)
-        // this.addPass(this.bloomPass)
+        this.bloomPass = new UnrealBloomPass(new Vector2(W, H), bloom.strength, bloom.radius, bloom.threshold)
+        this.bloomPass.strength  = bloom.strength
+        this.bloomPass.radius    = bloom.radius
+        this.bloomPass.threshold = bloom.threshold
+
+
+        this.addPass(this.bloomPass)
+
+
 
         // this.bokehPass = new BokehPass(this.scene, this.camera, {
         //     focus: 1,

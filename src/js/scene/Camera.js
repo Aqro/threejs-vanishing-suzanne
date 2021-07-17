@@ -21,7 +21,7 @@ export default class Camera extends PerspectiveCamera {
         super(fov, aspect, 0.1, 10)
         // super(-frustrumAspect, frustrumAspect, frustrumAspect, -frustrumAspect, 1, 100)
 
-        this.position.set(2, 2, 3)
+        this.position.set(0, 0, 5)
         this.lookAt(new Vector3())
 
         this.bindEvents()

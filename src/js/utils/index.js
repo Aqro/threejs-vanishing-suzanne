@@ -1,4 +1,7 @@
 import { BufferGeometry, Float32BufferAttribute, Mesh, Sprite, SpriteMaterial, Texture } from 'three'
+import loadTexture from './texture-loader'
+import modelLoaderGltf from './model-loader-gltf'
+
 const events = {}
 
 export const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, val))
@@ -7,6 +10,7 @@ export const pick = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
 export const map = (value, min1, max1, min2, max2) => min2 + (max2 - min2) * (value - min1) / (max1 - min1)
 
+export { loadTexture, modelLoaderGltf as modelLoader }
 
 export const getPos = ({ changedTouches, clientX, clientY, target }) => {
     const x = changedTouches ? changedTouches[0].clientX : clientX
@@ -34,15 +38,15 @@ export const unwrap = (content) => {
 }
 
 export const ev = (eventName, data, once = false) => {
-    if (!(eventName in events)) {
-        const e = new CustomEvent(eventName, { detail: data }, { once })
-        document.dispatchEvent(e)
+    const e = new CustomEvent(eventName, { detail: data }, { once })
+    document.dispatchEvent(e)
+    // if (!(eventName in events)) {
 
-        events[eventName] = e
-    } else {
-        const e = events[eventName]
-        document.dispatchEvent(e)
-    }
+    //     events[eventName] = e
+    // } else {
+    //     const e = events[eventName]
+    //     document.dispatchEvent(e)
+    // }
 }
 
 export const bigTriangle = (material) => {

@@ -1,8 +1,13 @@
 import '../sass/styles.scss'
+import gsap from 'gsap'
+
+import { SlowMo } from 'gsap/EasePack'
 
 import Stage from './Stage'
 import Layout from './Layout'
 import Browser from './Browser'
+
+gsap.registerPlugin(SlowMo)
 
 const APP = window.APP || {}
 

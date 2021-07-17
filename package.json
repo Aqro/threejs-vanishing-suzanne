@@ -40,6 +40,7 @@
   "dependencies": {
     "@babel/runtime": "^7.14.0",
     "cannon-es": "^0.18.0",
+    "glsl-curl-noise": "^0.0.4",
     "glsl-fast-gaussian-blur": "^1.0.2",
     "gsap": "^3.6.1",
     "stats.js": "^0.17.0",

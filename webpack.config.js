@@ -106,8 +106,9 @@ module.exports = {
             {
                 test: /\.(glsl|vs|fs|vert|frag)$/,
                 exclude: /node_modules/,
+                type: 'asset/source',
                 use: [
-                    'glsl-shader-loader',
+                    'glslify-loader',
                 ],
             },
         ],
