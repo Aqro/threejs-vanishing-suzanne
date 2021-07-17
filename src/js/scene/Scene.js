@@ -34,8 +34,8 @@ export default class Scene extends _Scene {
 
     async preload() {
         this.store = {
-            obsidian: await loadTexture('/dist/img/obsidian.jpg'),
-            suzanne : await modelLoader('/dist/models/suzanne.glb').then((m) => m.children[0]),
+            obsidian: await loadTexture('dist/img/obsidian.jpg'),
+            suzanne : await modelLoader('dist/models/suzanne.glb').then((m) => m.children[0]),
         }
     }
 
