@@ -1,5 +1,5 @@
 import { WebGLRenderer } from 'three'
-
+import gsap from 'gsap'
 
 const BG = 0x232329
 
@@ -15,6 +15,8 @@ export default class Renderer extends WebGLRenderer {
         super({
             canvas: $canvas,
             antialias: false,
+
+            powerPreference: 'high-performance',
         })
 
 
@@ -53,7 +55,12 @@ export default class Renderer extends WebGLRenderer {
     toggleRender(shouldRender) {
         const renderLoop = shouldRender ? this.loopHandler : null
 
-        this.setAnimationLoop(renderLoop)
+        // this.setAnimationLoop(renderLoop)
+        if (shouldRender) {
+            gsap.ticker.add(this.loopHandler)
+        } else {
+            gsap.ticker.remove(this.loopHandler)
+        }
     }
 
     /* Values

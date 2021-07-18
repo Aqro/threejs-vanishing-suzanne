@@ -60,10 +60,11 @@ export default class PostProcessing extends EffectComposer {
 
     onPostNeedUpdate() {
         const { bloom } = PARAMS
+        const mod = APP.Browser.isSafari ? 0.5 : 1
 
-        this.bloomPass.strength  = bloom.strength
-        this.bloomPass.radius    = bloom.radius
-        this.bloomPass.threshold = bloom.threshold
+        this.bloomPass.strength  = bloom.strength * mod
+        this.bloomPass.radius    = bloom.radius * mod
+        this.bloomPass.threshold = bloom.threshold * mod
     }
 
     /* Actions
@@ -71,25 +72,31 @@ export default class PostProcessing extends EffectComposer {
 
     addCustomPasses() {
         const { W, H, PR } = APP.Layout
+        const { isSafari } = APP.Browser
         const { bloom } = PARAMS
 
-        this.custompass = new CustomShaderPass()
+        // this.custompass = new CustomShaderPass()
 
-        this.addPass(this.custompass)
+        // this.addPass(this.custompass)
+
+        const modifier = isSafari ? 0.5 : 1
 
 
-        this.smaaPass = new SMAAPass(W * PR, H * PR)
-        this.addPass(this.smaaPass)
-
-        this.bloomPass = new UnrealBloomPass(new Vector2(W, H), bloom.strength, bloom.radius, bloom.threshold)
-        this.bloomPass.strength  = bloom.strength
-        this.bloomPass.radius    = bloom.radius
-        this.bloomPass.threshold = bloom.threshold
+        this.bloomPass = new UnrealBloomPass(
+            new Vector2(W * PR, H * PR),
+            bloom.strength * modifier,
+            bloom.radius * modifier,
+            bloom.threshold * modifier,
+        )
+        this.bloomPass.strength  = bloom.strength * modifier
+        this.bloomPass.radius    = bloom.radius * modifier
+        this.bloomPass.threshold = bloom.threshold * modifier
 
 
         this.addPass(this.bloomPass)
 
-
+        this.smaaPass = new SMAAPass(W * PR, H * PR)
+        this.addPass(this.smaaPass)
 
         // this.bokehPass = new BokehPass(this.scene, this.camera, {
         //     focus: 1,
