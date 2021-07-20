@@ -1,4 +1,5 @@
 {
+  "name": "threejs-vanishing-suzanne",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --progress --config webpack.dev.js"
