@@ -18,14 +18,14 @@ export default class ParticleSystem extends Object3D {
 
         this.store = store
 
-        this.init().then(() => {
+        this.preload().then(() => {
             this.initMaterial()
             this.initSystem()
         })
     }
 
-    async init() {
-        // Load async things
+    async preload() {
+        // Load async stuff
     }
 
 

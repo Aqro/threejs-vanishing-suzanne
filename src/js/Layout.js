@@ -1,4 +1,5 @@
-import { ev, getPos } from '@utils'
+/* eslint-disable class-methods-use-this */
+import { ev, getPos } from '@helpers'
 
 export default class Layout {
 
@@ -29,7 +30,7 @@ export default class Layout {
 
         this.isResizing = false
 
-        ev('layoutChange')
+        ev('layout:change')
     }
 
     onDelayedResize() {

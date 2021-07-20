@@ -1,8 +1,8 @@
 import gsap from 'gsap'
 
 import DebugController from '@ctrl/DebugController'
-import { ev } from '@utils/'
-import PARAMS from '../Params'
+import { ev } from '@helpers'
+import PARAMS from '@params'
 
 
 
@@ -29,7 +29,7 @@ export default class DebugComponent {
 
         const params = this.controller.gui.addFolder({
             title: 'Params',
-            expanded : !APP.Browser.isMobile,
+            expanded : !Browser.isMobile,
         })
 
         // this.DC.gui.on('change', () => this.renderStage())
@@ -56,7 +56,7 @@ export default class DebugComponent {
         params.addInput(PARAMS.baseNoiseIteration, 'value', {
             label: 'Noise Max iteration',
             min: 1,
-            max: APP.Browser.isSafariDesktop ? 2 : 5,
+            max: Browser.isSafariDesktop ? 2 : 5,
             step: 1,
         })
 

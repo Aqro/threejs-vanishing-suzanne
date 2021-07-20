@@ -6,7 +6,7 @@ import { Raycaster, Vector3 } from 'three'
 ---------------------------------------------------------------------------------------------------- */
 
 
-export default class Ray {
+export default class PointerController {
 
     constructor(camera) {
         this.mouse  = new Vector3()

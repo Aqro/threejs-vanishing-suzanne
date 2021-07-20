@@ -14,13 +14,13 @@ export default class InstancedMeshSystem extends Object3D {
     constructor() {
         super()
 
-        this.init().then(() => {
+        this.preload().then(() => {
             this.initMaterial()
             this.initSystem()
         })
     }
 
-    async init() {
+    async preload() {
         // Load async things
     }
 
@@ -79,8 +79,6 @@ export default class InstancedMeshSystem extends Object3D {
             this.instancedMeshes.setMatrixAt(i, D.matrix)
             this.instancedMeshes.setColorAt(i, color)
         }
-
-        // this.instancedMeshes.geometry.setAttribute('aScale', new InstancedBufferAttribute(new Float32Array(scales), 1))
 
 
         this.instancedMeshes.instanceMatrix.needsUpdate = true

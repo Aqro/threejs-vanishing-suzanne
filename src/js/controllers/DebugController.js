@@ -1,7 +1,7 @@
 import Stats from 'stats.js'
 import { Pane } from 'tweakpane'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { ev } from '@utils/index'
+import { ev } from '@helpers'
 // import { Color, Vector3 } from 'three'
 // import gsap from 'gsap'
 
@@ -54,7 +54,7 @@ class DebugController {
         this.controls.enableKeys = false
         this.controls.enableDamping = true
         // this.controls.enableZoom = false
-        this.controls.minDistance = APP.Browser.isSafariDesktop ? 4 : 2.5
+        this.controls.minDistance = Browser.isSafariDesktop ? 4 : 2.5
         this.controls.maxDistance = 9
         this.controls.update()
 
@@ -67,7 +67,7 @@ class DebugController {
 
 
     initPreview({ previewSize }) {
-        const { PR } = APP.Layout
+        const { PR } = Layout
 
         this.preview = document.createElement('canvas')
         this.ctx = this.preview.getContext('2d')
@@ -116,7 +116,7 @@ class DebugController {
             this.stats.dom.style.left = `${this.previewParams.previewSize}px`
         }
 
-        const { W, H } = APP.Layout
+        const { W, H } = Layout
         const { renderer: R } = this.Stage
         const { previewSize } = this.previewParams
 

@@ -10,7 +10,7 @@ const BG = 0x232329
 export default class Renderer extends WebGLRenderer {
 
     constructor($canvas, loopFunction = () => {}) {
-        const { W, H, PR } = APP.Layout
+        const { W, H, PR } = Layout
 
         super({
             canvas: $canvas,
@@ -33,7 +33,7 @@ export default class Renderer extends WebGLRenderer {
 
 
     bindEvents() {
-        document.addEventListener('layoutChange', () => this.onResize())
+        document.addEventListener('layout:change', () => this.onResize())
     }
 
 
@@ -42,7 +42,7 @@ export default class Renderer extends WebGLRenderer {
     --------------------------------------------------------- */
 
     onResize() {
-        const { W, H } = APP.Layout
+        const { W, H } = Layout
 
         this.setSize(W, H)
     }
@@ -53,7 +53,7 @@ export default class Renderer extends WebGLRenderer {
     --------------------------------------------------------- */
 
     toggleRender(shouldRender) {
-        const renderLoop = shouldRender ? this.loopHandler : null
+        // const renderLoop = shouldRender ? this.loopHandler : null
 
         // this.setAnimationLoop(renderLoop)
         if (shouldRender) {

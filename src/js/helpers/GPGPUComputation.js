@@ -1,19 +1,19 @@
 import { HalfFloatType } from 'three'
 import { GPUComputationRenderer as GPUC } from 'three/examples/jsm/misc/GPUComputationRenderer'
 
-import testFragmentShader from '@gpu/test-variable.fs.glsl'
+import testFragmentShader from '@gpgpu/template-gpgpu.fs.glsl'
 
 const SIZE = 256 // Must be PO2
 
 /* TITLE
 ---------------------------------------------------------------------------------------------------- */
 
-export default class GPUComputationRenderer extends GPUC {
+export default class GPGPUComputation extends GPUC {
 
     constructor(renderer) {
         super(SIZE, SIZE, renderer)
 
-        if (APP.Browser.isSafari) {
+        if (Browser.isSafari) {
             this.setDataType(HalfFloatType)
         }
 
@@ -30,16 +30,12 @@ export default class GPUComputationRenderer extends GPUC {
             console.error(error)
         }
 
-        this.bindHandlers()
         this.bindEvents()
     }
 
-    bindHandlers() {
-        this.updateHandler = () => this.onUpdate()
-    }
 
     bindEvents() {
-        document.addEventListener('scene:update', this.updateHandler)
+        document.addEventListener('scene:update', () => this.onUpdate())
     }
 
 

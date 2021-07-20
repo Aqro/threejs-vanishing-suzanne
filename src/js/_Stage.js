@@ -1,5 +1,3 @@
-import { ev } from '@utils/index'
-import gsap from 'gsap'
 
 /* Scene Components
 --------------------------------------------------------- */
@@ -8,17 +6,13 @@ import Renderer from '@scene/Renderer'
 import Scene from '@scene/Scene'
 import Camera from '@scene/Camera'
 import PostProcessing from '@scene/PostProcessing'
-// import Lights from '@comps/scene/Lights'
 
 
 
 /* Custom Components
 --------------------------------------------------------- */
 
-// import Fbo from '@comps/Fbo'
-import Ray from '@comps/Ray'
 import DebugComponent from '@comps/DebugComponent'
-// import GPUComputationRenderer from '@scene/GPUComputationRenderer'
 
 
 
@@ -27,27 +21,6 @@ import DebugComponent from '@comps/DebugComponent'
 
 import PARAMS from './Params'
 
-
-
-/* Materials
---------------------------------------------------------- */
-
-// import CustomMaterial from '@mat/template-material'
-
-
-
-
-/* Utils
---------------------------------------------------------- */
-
-// import TextureLoader from './utils/texture-loader'
-// import ModelLoader from './utils/model-loader-gltf'
-
-
-
-
-/* Constants & Helpers
---------------------------------------------------------- */
 
 
 
@@ -75,10 +48,7 @@ export default class Stage {
         this.initDebugController()
         this.initPostProcess()
 
-        // this.renderStage(500)
         this.renderer.toggleRender(true)
-
-        this.bindEvents()
     }
 
 
@@ -108,10 +78,7 @@ export default class Stage {
 
 
     initScene() {
-        // this.ray   = new Ray(this.camera)
         this.scene = new Scene()
-
-        // this.gpu = new GPUComputationRenderer(this.renderer)
     }
 
 
@@ -120,36 +87,6 @@ export default class Stage {
         this.post = new PostProcessing(this)
     }
 
-
-
-    bindEvents() {
-        document.addEventListener('layoutChange', () => this.onResize())
-        document.addEventListener('stage:render', (e) => this.onStageRender(e.detail))
-    }
-
-
-
-    /* Handlers
-    --------------------------------------------------------- */
-
-    onResize() {
-        this.renderStage()
-    }
-
-
-    onStageRender() {
-        this.renderStage()
-    }
-
-    renderStage(delay = 100) {
-        // this.renderer.toggleRender(true)
-
-        // clearTimeout(this.renderTimer)
-
-        // this.renderTimer = setTimeout(() => {
-        //     this.renderer.toggleRender(false)
-        // }, delay)
-    }
 
 
     /* Actions

@@ -8,8 +8,8 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 
 // Passes
-import CustomShaderPass from '@passes/template-pass'
-import PARAMS from '../Params'
+// import CustomShaderPass from '@passes/template-pass'
+import PARAMS from '@params'
 
 
 
@@ -42,7 +42,7 @@ export default class PostProcessing extends EffectComposer {
 
 
     bindEvents() {
-        document.addEventListener('layoutChange', () => this.onResize())
+        document.addEventListener('layout:change', () => this.onResize())
         document.addEventListener('postUpdate', () => this.onPostNeedUpdate())
     }
 
@@ -52,7 +52,7 @@ export default class PostProcessing extends EffectComposer {
     --------------------------------------------------------- */
 
     onResize() {
-        const { W, H, PR } = APP.Layout
+        const { W, H, PR } = Layout
 
         this.setSize(W, H)
     }
@@ -60,7 +60,7 @@ export default class PostProcessing extends EffectComposer {
 
     onPostNeedUpdate() {
         const { bloom } = PARAMS
-        const mod = APP.Browser.isSafari ? 0.5 : 1
+        const mod = Browser.isSafari ? 0.5 : 1
 
         this.bloomPass.strength  = bloom.strength * mod
         this.bloomPass.radius    = bloom.radius * mod
@@ -71,8 +71,8 @@ export default class PostProcessing extends EffectComposer {
     --------------------------------------------------------- */
 
     addCustomPasses() {
-        const { W, H, PR } = APP.Layout
-        const { isSafari } = APP.Browser
+        const { W, H, PR } = Layout
+        const { isSafari } = Browser
         const { bloom } = PARAMS
 
         // this.custompass = new CustomShaderPass()

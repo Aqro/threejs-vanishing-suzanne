@@ -1,11 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path')
-const glob = require('glob')
 
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
 // const webpack = require('webpack')
 const sass = require('sass')
 
@@ -17,28 +13,21 @@ module.exports = {
         path: finalPath,
         filename: 'app.js',
     },
+    stats: 'errors-only',
     resolve: {
         alias: {
+            '@params': path.resolve(__dirname, 'src/js/Params.js'),
+
             '@comps': path.resolve(__dirname, 'src/js/components'),
             '@scene': path.resolve(__dirname, 'src/js/scene/'),
             '@ctrl': path.resolve(__dirname, 'src/js/controllers/'),
-            '@mat': path.resolve(__dirname, 'src/js/materials/'),
-            '@gpu': path.resolve(__dirname, 'src/js/gpu-shaders/'),
-            '@params': path.resolve(__dirname, 'src/js/params/'),
-            '@passes': path.resolve(__dirname, 'src/js/passes/'),
-            '@utils': path.resolve(__dirname, 'src/js/utils/'),
-        },
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                styles: {
-                    name: 'styles',
-                    test: /\.css$/,
-                    chunks: 'all',
-                    enforce: true,
-                },
-            },
+
+            '@shaders': path.resolve(__dirname, 'src/js/shaders/'),
+            '@mat': path.resolve(__dirname, 'src/js/shaders/materials/'),
+            '@passes': path.resolve(__dirname, 'src/js/shaders/passes/'),
+            '@gpgpu': path.resolve(__dirname, 'src/js/shaders/gpgpu/'),
+
+            '@helpers': path.resolve(__dirname, 'src/js/helpers/'),
         },
     },
     module: {
@@ -123,15 +112,6 @@ module.exports = {
                 { from: './src/fonts', to: path.join(finalPath, '/fonts'), force: true },
                 { from: './src/img', to: path.join(finalPath, '/img'), force: true },
             ],
-        }),
-        new PurgecssPlugin({
-            paths: glob.sync(`${finalPath}/**/*`, { nodir: true }),
-        }),
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            server: { baseDir: '.' },
-            browser: 'google chrome',
         }),
     ],
 }

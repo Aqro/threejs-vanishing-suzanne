@@ -15,7 +15,7 @@ const fov = 50
 export default class Camera extends PerspectiveCamera {
 
     constructor() {
-        const { W, H } = APP.Layout
+        const { W, H } = Layout
         const aspect = W / H
 
         super(fov, aspect, 0.1, 10)
@@ -29,7 +29,7 @@ export default class Camera extends PerspectiveCamera {
 
 
     bindEvents() {
-        document.addEventListener('layoutChange', () => this.onResize())
+        document.addEventListener('layout:change', () => this.onResize())
     }
 
 
@@ -39,7 +39,7 @@ export default class Camera extends PerspectiveCamera {
     --------------------------------------------------------- */
 
     onResize() {
-        const { W, H } = APP.Layout
+        const { W, H } = Layout
 
         this.aspect = W / H
         this.updateProjectionMatrix()

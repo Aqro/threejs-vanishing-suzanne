@@ -1,11 +1,14 @@
 import { BoxGeometry, Color, Mesh, MeshMatcapMaterial, Scene as _Scene, SphereGeometry, Vector2, Vector3 } from 'three'
-import { ev, loadTexture, modelLoader } from '@utils'
+
+import { ev } from '@helpers'
+import modelLoader from '@helpers/ModelLoader'
+import loadTexture from '@helpers/TextureLoader'
 
 
 /* Components
 --------------------------------------------------------- */
 import ParticleSystem from '@comps/ParticleSystem'
-import InstancedMeshSystem from '@comps/InstancedMeshSystem'
+// import InstancedMeshSystem from '@comps/InstancedMeshSystem'
 
 
 /* Material
@@ -13,7 +16,7 @@ import InstancedMeshSystem from '@comps/InstancedMeshSystem'
 
 // import CustomMaterial from '@mat/template-material'
 import LokiMaterial from '@mat/loki-material'
-import PARAMS from '../Params'
+import PARAMS from '@params'
 
 
 
@@ -97,6 +100,7 @@ export default class Scene extends _Scene {
     /* Actions
     --------------------------------------------------------- */
 
+    // eslint-disable-next-line class-methods-use-this
     update() {
         ev('scene:update')
     }

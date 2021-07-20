@@ -6,20 +6,26 @@
   "parser": "babel-eslint",
   "env": { "browser": true },
   "globals": {
-    "APP": true
+    "Browser": true,
+    "Layout": true,
+    "Stage": true
   },
   "settings": {
     "import/resolver": {
       "alias": {
         "map": [
+            ["@params", "./src/js/Params.js"],
+
             ["@comps", "./src/js/components/"],
             ["@scene", "./src/js/scene/"],
             ["@ctrl", "./src/js/controllers/"],
-            ["@gpu", "./src/js/gpu-shaders/"],
-            ["@mat", "./src/js/materials/"],
-            ["@params", "./src/js/params/"],
-            ["@passes", "./src/js/passes/"],
-            ["@utils", "./src/js/utils/"]
+
+            ["@shaders", "./src/js/shaders/"],
+            ["@mat", "./src/js/shaders/materials/"],
+            ["@passes", "./src/js/shaders/passes/"],
+            ["@gpgpu", "./src/js/shaders/gpgpu/"],
+
+            ["@helpers", "./src/js/helpers/"]
         ]
     },
     "extensions": [".js"]
